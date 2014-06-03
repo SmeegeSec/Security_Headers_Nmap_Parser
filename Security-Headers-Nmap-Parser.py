@@ -6,22 +6,22 @@ Author:         Smeege
 Contact:        SmeegeSec@gmail.com
 
 Description:    Security-Headers-Nmap-Parser.py is a python script written to parse and display the results of nmap .xml output files.  
-				If the '--script=http-headers' argument is specifed an html report will be generated with each row being an individual
-				ip:port and which security headers it responded with.  The motivation behind this script was to provide a clean report
-				and clear look at which assets in an environment respond with which security headers.
+		If the '--script=http-headers' argument is specifed an html report will be generated with each row being an individual
+		ip:port and which security headers it responded with.  The motivation behind this script was to provide a clean report
+		and clear look at which assets in an environment respond with which security headers.
 
 Logic:
-				access-control-allow-origin: *		#bad, allows cross-site requests from any domain.  null or specify domain is good.
-				content-security-policy				#good, define scripts,media,stylesheets,etc. that can run.  whitelist resources.
-				x-permitted-cross-domain-policies	#good, specify which policy files to follow (http://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/CrossDomain_PolicyFile_Specification.pdf)
-				x-content-type-options				#good, reject responses with incorrect MIME types.  MIME types must match script and stylesheet resources.
-				server								#bad, dont need to expose server information
-				strict-transport-security			#good, specify browsers should request https version of content
-				x-frame-options						#good, disallow framing by other sites. three options: deny, sameorigin, allow-from
-				x-powered-by						#bad, dont need to expose software information
-				x-xss-protection: 0					#bad, protection disabled
-				x-xss-protection: 1					#good, modifies response to break up potential script attacks
-				x-xss-protection: 1; mode=block		#good, prevents whole page from rendering if potential attack is detected
+		access-control-allow-origin: *		#bad, allows cross-site requests from any domain.  null or specify domain is good.
+		content-security-policy			#good, define scripts,media,stylesheets,etc. that can run.  whitelist resources.
+		x-permitted-cross-domain-policies	#good, specify which policy files to follow (http://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/CrossDomain_PolicyFile_Specification.pdf)
+		x-content-type-options			#good, reject responses with incorrect MIME types.  MIME types must match script and stylesheet resources.
+		server				        #bad, dont need to expose server information
+		strict-transport-security		#good, specify browsers should request https version of content
+		x-frame-options				#good, disallow framing by other sites. three options: deny, sameorigin, allow-from
+		x-powered-by				#bad, dont need to expose software information
+		x-xss-protection: 0			#bad, protection disabled
+		x-xss-protection: 1			#good, modifies response to break up potential script attacks
+		x-xss-protection: 1; mode=block		#good, prevents whole page from rendering if potential attack is detected
 """
 import argparse
 import os
@@ -41,7 +41,7 @@ if not os.path.isfile(args.file):
 
 if args.output:
 	if args.output.endswith('.html'):
-		outFile = open(args.output, 'w')
+                outFile = open(args.output, 'w')
 	else:
 		outFile = open(args.output + '.html', 'w')
 else:
